@@ -4,7 +4,7 @@
 	  <tbody>
 		<tr>
 		 <td>Image</td>
-		 <td></td>
+		 <td><%= @book.title %></td>
 		 <td><%= @book.body %></td>
 		 <td>Edit</td>
 		 <td>Destroy</td>
@@ -12,3 +12,5 @@
 	   </tbody>
 	</table>
 </div>
+
+<%= render 'books/new', book: @book %>

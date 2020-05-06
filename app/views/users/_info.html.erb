@@ -1,0 +1,16 @@
+<h2>User Info</h2>
+<div>
+ <%= attachment_image_tag user, :profile_image, size:'100x100', format:'jpeg', class: "pull-left profile-img", fallback: "no_image.jpg" %>
+</div>
+<table class="table">
+ <tbody>
+  <tr>
+   <th>name</th>
+   <th><%= user.name %></th>
+  </tr>
+  <tr>
+   <th>introduction</th>
+   <th><%= user.introduction %></th>
+  </tr>
+ </tbody>
+</table>
