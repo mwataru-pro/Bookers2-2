@@ -1,4 +1,5 @@
 <h2>User info</h2>
+
 <div>
  <%= attachment_image_tag user, :profile_image, size:'100x100', format:'jpeg', class: "pull-left profile-img", fallback: "no_image.jpg" %>
 </div>
@@ -14,3 +15,9 @@
   </tr>
  </tbody>
 </table>
+
+<div class='row'>
+  <% if user == current_user %>
+   <%= link_to '　　', edit_user_path(current_user.id),class: "btn btn-block btn-default glyphicon glyphicon-wrench edit_user_#{current_user.id}" %>
+  <% end %>
+</div>
