@@ -1,5 +1,6 @@
 class BooksController < ApplicationController
   before_action :authenticate_user!
+  before_action :guard, only: [:edit]
 
   def index
   	@book = Book.new
@@ -45,6 +46,14 @@ class BooksController < ApplicationController
   end
 
   private
+
+  def guard
+    book = Book.find(params[:id])
+    if book.user != current_user
+      redirect_to books_path
+    end
+  end
+
   def book_params
   	params.require(:book).permit(:title, :body)
   end

@@ -18,6 +18,6 @@
 
 <div class='row'>
   <% if user == current_user %>
-   <%= link_to '　　', edit_user_path(current_user.id),class: "btn btn-block btn-default glyphicon glyphicon-wrench edit_user_#{current_user.id}" %>
+   <%= link_to '', edit_user_path(current_user.id),class: "col-xs-12 btn btn-block btn-default glyphicon glyphicon-wrench edit_user_#{current_user.id}" %>
   <% end %>
 </div>

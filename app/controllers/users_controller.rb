@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   before_action :authenticate_user!
-  before_action :correct_user, only: [:edit]
+  before_action :guard, only: [:edit]
 
   def index
     @users = User.all
@@ -19,10 +19,22 @@ class UsersController < ApplicationController
   end
 
   def update
-    @user
+    @user = User.find(params[:id])
+    if @user.update(user_params)
+      redirect_to user_path(@user.id), notice: "You have updated user successfully."
+    else
+      render :edit
+    end
   end
 
-  private
+private
+
+  def guard
+    user = User.find(params[:id])
+    if user != current_user
+      redirect_to user_path(current_user)
+    end
+  end
 
   def user_params
     params.require(:user).permit(:name, :profile_image ,:introduction)
