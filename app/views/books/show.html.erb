@@ -20,6 +20,23 @@
 				 	</td>
 				 <td><%= @book.title %></td>
 				 <td><%= @book.body %></td>
+
+				 <!-- いいねの表示 -->
+				 <td>
+		            <% if @book.favorited_by?(current_user) %>
+		               <%= link_to book_favorite_path(@book),method: :delete do %>
+		               <span class="glyphicon glyphicon-heart" aria-hidden="true"></span>
+		               <%= @book.favorites.count %>
+		               <% end %>
+		            <% else %>
+		               <%= link_to book_favorite_path(@book),method: :post do %>
+		               <span class="glyphicon glyphicon-heart-empty" aria-hidden="true"></span>
+		               <%= @book.favorites.count %>
+		               <% end %>
+		            <% end %>
+		         </td>
+				 <!-- /いいねの表示 -->
+
 				 <% if @book.user_id == current_user.id %>
 				 <td><%= link_to "Edit", edit_book_path(@book.id),class: "btn-sm btn-success" %> </td>
 				 <td><%= link_to "Destroy", book_path(@book.id), method: :delete,  "data-confirm" => "本当に削除しますか？"  ,class: "btn-sm btn-danger" %></td>
